@@ -1,7 +1,7 @@
 <?php
 #This script uses slackbot to execute simple API search/response calls to open data
 global $command;
-$command = $_POST['command']; //read the command from slack
+$command = $_POST['command']; //read the command from slack $_GET for testing & $_POST for production
 
 error_reporting(E_ALL ^ E_DEPRECATED); //ignore those silly error messages until code crashes.
 
@@ -13,7 +13,7 @@ function send_slack($message)
     /*set up the curl to transfer the message with certain header options */
     $ch=curl_init();
     
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array ('Content-Type:application/json'))l
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array ('Content-Type:application/json'));
     curl_setopt($ch, CURLOPT_POSTFILEDS,$payload);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,2); //max timeout in seconds to connect
     curl_setopt($ch, CURLOPT_TIMEOUT,4); //max timeout for the whole response
@@ -31,7 +31,7 @@ function send_slack($message)
 if (strpos ($command, 'greet')==true)
 {
    $text = $_POST['text'];
-    $token = $POST['token']; //store the token from the slack message and maybe use it for validation later
+    $token = $_POST['token']; //store the token from the slack message and maybe use it for validation later
 send_slack("what's good homie?")    
 }
 
