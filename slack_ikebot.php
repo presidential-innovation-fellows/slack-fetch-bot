@@ -1,5 +1,8 @@
 <?php
 #This script uses slackbot to execute simple API search/response calls to open data
+global $command;
+$command = $_POST['command']; //read the command from slack
+
 error_reporting(E_ALL ^ E_DEPRECATED); //ignore those silly error messages until code crashes.
 
 function send_slack($message)
@@ -23,5 +26,13 @@ function send_slack($message)
     
 }
 
-send_slack("what's good homie?")
+
+
+if (strpos ($command, 'greet')==true)
+{
+   $text = $_POST['text'];
+    $token = $POST['token']; //store the token from the slack message and maybe use it for validation later
+send_slack("what's good homie?")    
+}
+
 ?>
